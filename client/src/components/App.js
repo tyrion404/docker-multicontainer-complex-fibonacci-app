@@ -1,18 +1,30 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+import './App.css';
+import AboutPage from './About';
 import Fib from './Fib';
-import About from './About';
 
-function App() {
-  return (
-    <div>
-      <BrowserRouter>
-        <Route exact path='/' component={Fib} />
-        <Route exact path='/about' component={About} />
-      </BrowserRouter>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className='App'>
+          <header className='App-header'>
+            <Link to='/' style={{ margin: '0 20px' }}>
+              Home
+            </Link>
+            <Link to='/about'>About Me</Link>
+          </header>
+          <br />
+          <div>
+            <Route exact path='/' component={Fib} />
+            <Route path='/about' component={AboutPage} />
+          </div>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
