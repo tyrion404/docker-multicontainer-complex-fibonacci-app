@@ -18,3 +18,16 @@ after_success:
   - docker push xscotophilic/docker-multicontainer-complex-app-nginx
   - docker push xscotophilic/docker-multicontainer-complex-app-server
   - docker push xscotophilic/docker-multicontainer-complex-app-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-1-626478535714
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
